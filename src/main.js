@@ -17,12 +17,13 @@ let config = {
     type: Phaser.CANVAS,
     width: 1280,
     height: 720,
-    scene: [Menu, Play]
+    scene: [Menu, Play, Credits, Instructions]
 }
 
 let game = new Phaser.Game(config);
 
-let keyF, keyR, keyLEFT, keyRIGHT, keyDOWN, keyUP;
+let keyLEFT, keyRIGHT, keyDOWN, keyUP, keyENTER, keyBACK, keyQ, keyW, keyE, keyR, keyT, keyY, keyU, keyI, keyO, keyP;
+let keyA, keyS, keyD, keyF, keyG, keyH, keyJ, keyK, keyL, keyZ, keyX, keyC, keyV, keyB, keyN, keyM;
 
 //set UI sizes
 let borderUISize = game.config.height / 15;
@@ -30,4 +31,3 @@ let borderPadding = borderUISize / 3;
 
 //set game variables
 let highScore = 0;
-let onePlayed = false;
