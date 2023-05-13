@@ -24,12 +24,12 @@ class Menu extends Phaser.Scene{
             fixedWidth: 0
         }
 
-        this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize - borderPadding, 'ROCKET PATROL: Third Impact', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width / 2, game.config.height / 2, 'Use mouse to move & click to fire', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize - borderPadding, 'Hiragana Runner', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize + borderPadding, 'Press ← for Novice and → for Expert', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize * 2) + borderPadding, 'Press ↓ for 2P Easy and ↑ for 2P Hard', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize + borderPadding, 'Press ← for Accessible Mode and → for Normal Mode', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize * 2) + borderPadding, 'Press ↑ for Tutorial and ↓ for Credits', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize * 3) + borderPadding, 'Accessible Mode shows the correct answer for non-Japanese players', menuConfig).setOrigin(0.5);
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -67,8 +67,11 @@ class Menu extends Phaser.Scene{
     }
 
     update(){
-        if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
+        if(Phaser.Input.Keyboard.JustDown(keyDOWN)){
             this.scene.start('creditScene');    
+        }
+        if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
+            this.scene.start('playScene');   //add accessibility settings for those who don't know hiragana yet
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             this.scene.start('playScene');    
