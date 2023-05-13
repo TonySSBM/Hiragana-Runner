@@ -15,15 +15,14 @@
 ******************************/
 let config = {
     type: Phaser.CANVAS,
-    width: 1280,
-    height: 720,
+    width: 720,
+    height: 1280,
     scene: [Menu, Play, Credits, Instructions]
 }
 
 let game = new Phaser.Game(config);
 
-let keyLEFT, keyRIGHT, keyDOWN, keyUP, keyENTER, keyBACK, keyQ, keyW, keyE, keyR, keyT, keyY, keyU, keyI, keyO, keyP;
-let keyA, keyS, keyD, keyF, keyG, keyH, keyJ, keyK, keyL, keyZ, keyX, keyC, keyV, keyB, keyN, keyM;
+let keyLEFT, keyRIGHT, keyDOWN, keyUP, keyENTER, keyBACK;
 
 //set UI sizes
 let borderUISize = game.config.height / 15;
