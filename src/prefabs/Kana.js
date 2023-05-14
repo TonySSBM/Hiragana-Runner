@@ -9,20 +9,20 @@ class Kana extends Phaser.GameObjects.Sprite{
         this.kanaArray = ['a', 'i', 'u', 'e', 'o', 'ka', 'ki', 'ku', 'ke', 'ko', 'sa', 'shi', 'su', 'se', 'so', 'ta', 'chi', 'tsu', 'te', 'to',
                      'na', 'ni', 'nu', 'ne', 'no', 'ha', 'hi', 'fu', 'he', 'ho', 'ma', 'mi', 'mu', 'me', 'mo', 'ra', 'ri', 'ru', 're', 'ro',
                      'ya', 'yu', 'yo', 'wa', 'wo', 'n'];
+        this.currentKana = '';
         this.correctAnswer = false;
     }
 
     update(){
         this.y += this.moveSpeed;
-        if(this.y >= this.scene.arrow.y){
-            this.scene.kanaHit(this);
-        }
-        
     }
 
     reset(){
         this.y = 0;
-        this.setTexture(this.kanaArray[Phaser.Math.Between(0, 45)]);
+
+        this.randNum = Phaser.Math.Between(0, 45);
+        this.currentKana = this.kanaArray[this.randNum];
+        this.setTexture(this.currentKana);
         this.setScale(0.1);
         this.width = 20;
         this.height = 20;
