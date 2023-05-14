@@ -22,7 +22,10 @@
  * experience the game.
  * 
  * Citation List:
- * N/A
+ * BGM by Seth_Makes_Sounds: https://freesound.org/people/Seth_Makes_Sounds/sounds/673355/
+ * Menu SFX by Tissman: https://freesound.org/people/Tissman/sounds/443907/
+ * Correct SFX by unadamlar: https://freesound.org/people/unadamlar/sounds/476178/
+ * Wrong SFX by unadamlar: https://freesound.org/people/unadamlar/sounds/476177/
 ******************************/
 let config = {
     type: Phaser.CANVAS,

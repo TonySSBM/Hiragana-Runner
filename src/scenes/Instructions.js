@@ -32,10 +32,13 @@ class Instructions extends Phaser.Scene{
         this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize * 3.5) + borderPadding, 'Press ← to go back\nto main menu', menuConfig).setOrigin(0.5);
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+
+        this.sound.volume = 0.3;
     }
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
+            this.sound.play('sfx_menu');
             this.scene.start('menuScene'); 
         }
     }
