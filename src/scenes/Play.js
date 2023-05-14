@@ -58,10 +58,19 @@ class Play extends Phaser.Scene{
 
         if(this.kana01.correctAnswer){
             this.romaji = this.add.text(195, borderUISize - borderPadding, this.kana01.currentKana, scoreConfig);
+            if(accessibility){
+                this.romaji.text = this.kana01.currentHiragana;
+            }
         }else if(this.kana02.correctAnswer){
             this.romaji = this.add.text(195, borderUISize - borderPadding, this.kana02.currentKana, scoreConfig);
+            if(accessibility){
+                this.romaji.text = this.kana02.currentHiragana;
+            }
         }else{
             this.romaji = this.add.text(195, borderUISize - borderPadding, this.kana03.currentKana, scoreConfig);
+            if(accessibility){
+                this.romaji.text = this.kana03.currentHiragana;
+            }
         }
         
         this.gameOver = false;
@@ -125,12 +134,21 @@ class Play extends Phaser.Scene{
         if(this.rv == 1){
             this.kana01.correctAnswer = true;
             this.romaji.text = this.kana01.currentKana;
+            if(accessibility){
+                this.romaji.text = this.kana01.currentHiragana;
+            }
         }else if(this.rv == 2){
             this.kana02.correctAnswer = true;
             this.romaji.text = this.kana02.currentKana;
+            if(accessibility){
+                this.romaji.text = this.kana02.currentHiragana;
+            }
         }else if(this.rv == 3){
             this.kana03.correctAnswer = true;
             this.romaji.text = this.kana03.currentKana;
+            if(accessibility){
+                this.romaji.text = this.kana03.currentHiragana;
+            }
         }
     }
 }

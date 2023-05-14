@@ -30,3 +30,4 @@ let borderPadding = borderUISize / 3;
 
 //set game variables
 let highScore = 0;
+let accessibility = false;

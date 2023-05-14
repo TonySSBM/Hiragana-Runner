@@ -88,9 +88,11 @@ class Menu extends Phaser.Scene{
         }
         if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
             this.scene.start('playScene');   //add accessibility settings for those who don't know hiragana yet
+            accessibility = true;
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             this.scene.start('playScene');    
+            accessibility = false;
         }
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
             this.scene.start('tutorialScene');    
