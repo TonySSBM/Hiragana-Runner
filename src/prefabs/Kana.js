@@ -6,6 +6,10 @@ class Kana extends Phaser.GameObjects.Sprite{
         this.setScale(0.1);
         this.width = 20;
         this.height = 20;
+        this.kanaArray = ['a', 'i', 'u', 'e', 'o', 'ka', 'ki', 'ku', 'ke', 'ko', 'sa', 'shi', 'su', 'se', 'so', 'ta', 'chi', 'tsu', 'te', 'to',
+                     'na', 'ni', 'nu', 'ne', 'no', 'ha', 'hi', 'fu', 'he', 'ho', 'ma', 'mi', 'mu', 'me', 'mo', 'ra', 'ri', 'ru', 're', 'ro',
+                     'ya', 'yu', 'yo', 'wa', 'wo', 'n'];
+        this.correctAnswer = false;
     }
 
     update(){
@@ -18,5 +22,10 @@ class Kana extends Phaser.GameObjects.Sprite{
 
     reset(){
         this.y = 0;
+        this.setTexture(this.kanaArray[Phaser.Math.Between(0, 45)]);
+        this.setScale(0.1);
+        this.width = 20;
+        this.height = 20;
+        this.correctAnswer = false;
     }
 }

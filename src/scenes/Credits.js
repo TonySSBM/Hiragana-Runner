@@ -3,13 +3,6 @@ class Credits extends Phaser.Scene{
         super('creditScene');
     }
 
-    preload(){
-        /*
-        this.load.audio
-        this.load.image
-        */
-    }
-
     create(){
         let menuConfig = {
             fontFamily: 'Courier',
