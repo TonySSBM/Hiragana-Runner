@@ -114,12 +114,20 @@ class Play extends Phaser.Scene{
                 this.scoreRight.text = highScore; 
             }
             this.scoreLeft.text = this.p1Score;
+            if(this.kana01.moveSpeed < 1.4){
+                this.kana01.moveSpeed += 0.05;
+                this.kana02.moveSpeed += 0.05;
+                this.kana03.moveSpeed += 0.05;
+            }
         }else{
             this.lives -= 1;
             if(this.lives <= 0){
                 this.scene.start('menuScene'); 
             }
             this.livesText.text = this.livesText.text.substring(0, this.lives);
+            this.kana01.moveSpeed = 0.7;
+            this.kana02.moveSpeed = 0.7;
+            this.kana03.moveSpeed = 0.7;
         }
         this.kana01.reset();
         this.kana02.reset();

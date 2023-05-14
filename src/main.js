@@ -5,7 +5,7 @@
  * Total Time Spent: N/A hours
  * 
  * Github Repository: https://github.com/TonySSBM/Hiragana-Runner
- * Modified Game: https://tonyssbm.github.io/Hiragana-Runner/
+ * Playable Game: https://tonyssbm.github.io/Hiragana-Runner/
  * 
  * Creative Tilt Justification:
  * N/A
