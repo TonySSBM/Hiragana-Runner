@@ -5,18 +5,19 @@ class Play extends Phaser.Scene{
 
     preload(){
         this.load.image('arrow', './assets/arrow.png');
+        this.load.image('a', './assets/a.png');
     }
 
     create(){
         //starfield
         //this.starfield = this.add.tileSprite(0,0,650, 480, 'starfield').setOrigin(0,0);
-        this.cameras.main.setBackgroundColor('#FFFFFF');
+        this.cameras.main.setBackgroundColor('#D3D3D3');
         //arrow
-        this.arrow = new Arrow(this, game.config.width / 2, game.config.height - borderUISize - borderPadding, 'arrow').setOrigin(0.5, 0);
+        this.arrow = new Arrow(this, game.config.width / 2 - 15, game.config.height - (borderUISize * 3) - borderPadding, 'arrow').setOrigin(0.5, 0);
         //kana
-        this.kana01 = new Kana(this, game.config.width + borderUISize * 6, borderUISize * 4, 'a', 0, 30).setOrigin(0, 0);
-        this.kana02 = new Kana(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'a', 0, 20).setOrigin(0,0);
-        this.kana03 = new Kana(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'a', 0, 10).setOrigin(0,0);
+        this.kana01 = new Kana(this, 50, 100, 'a', 0).setOrigin(0.5, 0);
+        this.kana02 = new Kana(this, 150, 100, 'a', 0).setOrigin(0.5,0);
+        this.kana03 = new Kana(this, 250, 100, 'a', 0).setOrigin(0.5,0);
 
         //input
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -35,8 +36,8 @@ class Play extends Phaser.Scene{
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding * 2, this.p1Score, scoreConfig);
-        this.scoreRight = this.add.text(game.config.width - borderUISize - borderPadding * 10, borderUISize + borderPadding * 2, highScore, scoreConfig);
+        this.scoreLeft = this.add.text(borderPadding, borderUISize - borderPadding, this.p1Score, scoreConfig);
+        this.scoreRight = this.add.text(game.config.width - borderUISize - borderPadding * 5, borderUISize - borderPadding, highScore, scoreConfig);
         this.gameOver = false;
 
         scoreConfig.fixedWidth = 0;
@@ -59,25 +60,6 @@ class Play extends Phaser.Scene{
                 highScore = this.p1Score;
             }
         }
-
-        //collision checker
-        if(this.checkCollision(this.arrow, this.kana03)){
-            this.kanaHit(this.kana03);
-        }
-        if(this.checkCollision(this.arrow, this.kana02)){
-            this.kanaHit(this.kana02);
-        }
-        if(this.checkCollision(this.arrow, this.kana01)){
-            this.kanaHit(this.kana01);
-        }
-    }
-
-    checkCollision(arrow, kana){
-        if(arrow.x < kana.x + kana.width && arrow.x + arrow.width > kana.x && arrow.y < kana.y + kana.height && arrow.height + arrow.y > kana.y){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     kanaHit(kana) {
@@ -87,5 +69,8 @@ class Play extends Phaser.Scene{
             this.scoreRight.text = highScore; 
         }
         this.scoreLeft.text = this.p1Score;
+        this.kana01.reset();
+        this.kana02.reset();
+        this.kana03.reset();
     }
 }

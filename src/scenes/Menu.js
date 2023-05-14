@@ -4,7 +4,7 @@ class Menu extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('a', './assets/a.png');
+        /*this.load.image('a', './assets/a.png');
         this.load.image('i', './assets/i.png');
         this.load.image('u', './assets/u.png');
         this.load.image('e', './assets/e.png');
@@ -49,7 +49,7 @@ class Menu extends Phaser.Scene{
         this.load.image('yo', './assets/yo.png');
         this.load.image('wa', './assets/wa.png');
         this.load.image('wo', './assets/wo.png');
-        this.load.image('n', './assets/n.png');
+        this.load.image('n', './assets/n.png');*/
     }
 
     create(){
