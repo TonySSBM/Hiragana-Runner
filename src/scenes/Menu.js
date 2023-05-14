@@ -77,8 +77,6 @@ class Menu extends Phaser.Scene{
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-        keyBACK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.BACK);
         this.sound.volume -= 0.8;
     }
 
@@ -87,7 +85,7 @@ class Menu extends Phaser.Scene{
             this.scene.start('creditScene');    
         }
         if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
-            this.scene.start('playScene');   //add accessibility settings for those who don't know hiragana yet
+            this.scene.start('playScene');
             accessibility = true;
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){

@@ -19,6 +19,8 @@ class Play extends Phaser.Scene{
         //input
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
 
         this.p1Score = 0;
         let scoreConfig = {
@@ -26,7 +28,7 @@ class Play extends Phaser.Scene{
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#843605',
-            align: 'middle',
+            align: 'center',
             padding: {
               top: 5,
               bottom: 5,
@@ -85,6 +87,7 @@ class Play extends Phaser.Scene{
         this.lives = 3;
         scoreConfig.fixedWidth = 75;
         this.livesText = this.add.text(115, borderUISize - borderPadding, '♡♡♡', scoreConfig);
+        scoreConfig.fixedWidth = 100;
 
     }
 
@@ -103,59 +106,85 @@ class Play extends Phaser.Scene{
             if(this.p1Score > highScore){
                 highScore = this.p1Score;
             }
+
+            if(this.lives <= 0){
+                this.gameOver = true;
+            }
+        }else{
+            if(Phaser.Input.Keyboard.JustDown(keyUP)){
+                this.scene.restart();
+            }else if(Phaser.Input.Keyboard.JustDown(keyDOWN)){
+                this.scene.start('menuScene');
+            }
         }
     }
 
     kanaHit() {
-        if((this.arrow.pos == 1 && this.kana01.correctAnswer) || (this.arrow.pos == 2 && this.kana02.correctAnswer) || (this.arrow.pos == 3 && this.kana03.correctAnswer)){
-            this.p1Score += 1;
-            if(this.p1Score > highScore){
-                highScore = this.p1Score;
-                this.scoreRight.text = highScore; 
+        if(!this.gameOver){
+            if((this.arrow.pos == 1 && this.kana01.correctAnswer) || (this.arrow.pos == 2 && this.kana02.correctAnswer) || (this.arrow.pos == 3 && this.kana03.correctAnswer)){
+                this.p1Score += 1;
+                if(this.p1Score > highScore){
+                    highScore = this.p1Score;
+                    this.scoreRight.text = highScore; 
+                }
+                this.scoreLeft.text = this.p1Score;
+                if(this.kana01.moveSpeed < 1.4){
+                    this.kana01.moveSpeed += 0.05;
+                    this.kana02.moveSpeed += 0.05;
+                    this.kana03.moveSpeed += 0.05;
+                }
+            }else{
+                this.lives -= 1;
+                if(this.lives <= 0){
+                    let scoreConfig = {
+                        fontFamily: 'Courier',
+                        fontSize: '28px',
+                        backgroundColor: '#F3B141',
+                        color: '#843605',
+                        align: 'center',
+                        padding: {
+                          top: 5,
+                          bottom: 5,
+                        },
+                    }
+
+                    this.gameOver = true;
+                    this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
+                    this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press ↑ to Restart\nor ↓ for Menu', scoreConfig).setOrigin(0.5);
+                }
+                this.livesText.text = this.livesText.text.substring(0, this.lives);
+                this.kana01.moveSpeed = 0.7;
+                this.kana02.moveSpeed = 0.7;
+                this.kana03.moveSpeed = 0.7;
             }
-            this.scoreLeft.text = this.p1Score;
-            if(this.kana01.moveSpeed < 1.4){
-                this.kana01.moveSpeed += 0.05;
-                this.kana02.moveSpeed += 0.05;
-                this.kana03.moveSpeed += 0.05;
-            }
-        }else{
-            this.lives -= 1;
-            if(this.lives <= 0){
-                this.scene.start('menuScene'); 
-            }
-            this.livesText.text = this.livesText.text.substring(0, this.lives);
-            this.kana01.moveSpeed = 0.7;
-            this.kana02.moveSpeed = 0.7;
-            this.kana03.moveSpeed = 0.7;
-        }
-        this.kana01.reset();
-        this.kana02.reset();
-        this.kana03.reset();
-        while(this.kana02.currentKana == this.kana01.currentKana || this.kana03.currentKana == this.kana01.currentKana || this.kana03.currentKana == this.kana02.currentKana){
             this.kana01.reset();
             this.kana02.reset();
             this.kana03.reset();
-        }
-        
-        this.rv = Phaser.Math.Between(1, 3);
-        if(this.rv == 1){
-            this.kana01.correctAnswer = true;
-            this.romaji.text = this.kana01.currentKana;
-            if(accessibility){
-                this.romaji.text = this.kana01.currentHiragana;
+            while(this.kana02.currentKana == this.kana01.currentKana || this.kana03.currentKana == this.kana01.currentKana || this.kana03.currentKana == this.kana02.currentKana){
+                this.kana01.reset();
+                this.kana02.reset();
+                this.kana03.reset();
             }
-        }else if(this.rv == 2){
-            this.kana02.correctAnswer = true;
-            this.romaji.text = this.kana02.currentKana;
-            if(accessibility){
-                this.romaji.text = this.kana02.currentHiragana;
-            }
-        }else if(this.rv == 3){
-            this.kana03.correctAnswer = true;
-            this.romaji.text = this.kana03.currentKana;
-            if(accessibility){
-                this.romaji.text = this.kana03.currentHiragana;
+            
+            this.rv = Phaser.Math.Between(1, 3);
+            if(this.rv == 1){
+                this.kana01.correctAnswer = true;
+                this.romaji.text = this.kana01.currentKana;
+                if(accessibility){
+                    this.romaji.text = this.kana01.currentHiragana;
+                }
+            }else if(this.rv == 2){
+                this.kana02.correctAnswer = true;
+                this.romaji.text = this.kana02.currentKana;
+                if(accessibility){
+                    this.romaji.text = this.kana02.currentHiragana;
+                }
+            }else if(this.rv == 3){
+                this.kana03.correctAnswer = true;
+                this.romaji.text = this.kana03.currentKana;
+                if(accessibility){
+                    this.romaji.text = this.kana03.currentHiragana;
+                }
             }
         }
     }
