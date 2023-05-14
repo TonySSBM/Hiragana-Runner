@@ -27,7 +27,7 @@ class Credits extends Phaser.Scene{
         this.add.text(game.config.width / 2, game.config.height / 2 - (borderUISize * 3) - borderPadding, 'Credits', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize + borderPadding, 'Update Later', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize + borderPadding, 'Symbols from\nWikipedia Commons\nPublic Domain', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize + borderPadding, 'Update Later', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize * 2) + borderPadding, 'Press ← to go back\nto main menu', menuConfig).setOrigin(0.5);
 
